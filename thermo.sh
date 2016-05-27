@@ -1,5 +1,16 @@
 #!/usr/bin/env bash
-thermDir='/home/pi/projekte/temperaturnetzwerk/'
+
+if [ -z ${CLIMATE_HOME+arbitraryNullCheckValue} ]; 
+then
+	echo "CLIMATE_HOME variable is unset. Please find a new home for it"
+	exit 1
+else 
+	echo "CLIMATE_HOME is set to $CLIMATE_HOME."
+	echo "current PID is $$"
+fi
+
+echo $$ > $CLIMATE_HOME/thermo.pid
+thermDir=$CLIMATE_HOME
 
 while [ true ]
 do
