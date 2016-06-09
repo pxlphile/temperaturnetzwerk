@@ -1,5 +1,5 @@
 set title "Kellertemperatur in °C"
-unset multiplot
+#unset multiplot
 set xlabel "Zeit"
 set ylabel "Temperatur in °C"
 set xdata time
@@ -13,4 +13,7 @@ set grid xtics ytics
 #set term png
 #set output "temperatur.png"
 #show xrange
-plot 'datefile.txt' using 1:2 with lines t "Temperatur"
+set key outside
+#plot for [col=2:3] 'datefile.txt' using 1:col with lines
+plot 'datefile.txt' using 1:2 title "Temperatur" with lines, \
+	'datefile.txt' using 1:3 title "Durchschnitt" with lines
