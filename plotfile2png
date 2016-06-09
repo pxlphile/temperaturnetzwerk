@@ -10,6 +10,9 @@ set autoscale x
 set datafile separator ';'
 set grid xtics ytics
 
+set term png
+set output "temperatur.png"
+
 #show xrange
 
 plot 'datefile.txt' using 1:2 title "Temperatur" with lines lt rgb "#0000FF" lw 3, \

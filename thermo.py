@@ -30,8 +30,8 @@ def quitWithErrorMessage(filePath):
 	print "Die Datei" + filePath + " wurde nicht gefunden."
 	sys.exit(1)
 
-while True:
-	temp = readTemp()
-	print temp + " C" 
-	writeTempToDb(temp)
-	sleep(60)
+#while True:
+temp = readTemp()
+print temp + " C" 
+writeTempToDb(temp)
+#	sleep(60)
