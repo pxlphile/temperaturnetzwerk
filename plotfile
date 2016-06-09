@@ -1,0 +1,7 @@
+set xdata time
+set timefmt "%Y-%m-%d %H:%M:%S"
+set xrange["2016-06-09 11:00:00":"2016-06-09 14:10:00"]
+set autoscale y
+set datafile separator ';'
+show xrange
+plot 'datefile.txt' using 1:2
