@@ -1,14 +1,16 @@
-set title "Temperatur in °C über die Zeit"
+set title "Kellertemperatur in °C"
 unset multiplot
 set xlabel "Zeit"
 set ylabel "Temperatur in °C"
 set xdata time
 set timefmt "%Y-%m-%d %H:%M:%S"
 set xrange["2016-06-09 11:00:00":"2016-06-09 14:10:00"]
-set yrange[0:*]
+set yrange[*:*]
 set autoscale x
 set style line 1 lc rgb '#0060ad' lt 1 lw 3 pt 7 ps 1.5
 set datafile separator ';'
 set grid xtics ytics
-show xrange
-plot 'datefile.txt' using 1:2 with lines
+#set term png
+#set output "temperatur.png"
+#show xrange
+plot 'datefile.txt' using 1:2 with lines t "Temperatur"
