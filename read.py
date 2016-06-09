@@ -27,7 +27,7 @@ def readFromDb():
 	return result
 
 def writeDataSet(row, outputFile):
-		outputFile.write(row[0])
+		outputFile.write('"' + row[0] +'"')
 		outputFile.write(DELIMITER)
 		outputFile.write(str(row[1]) + "\n")
 
