@@ -27,7 +27,7 @@ do
 		exit 1
 	fi
 	
-	echo "SCP Zeug kommt hier her"
+	echo "FTP-Zeug kommt hier her"
 	#scp user@ssh.server-he.de:temperatur-alle.png temperatur-heute.png temperatur.html 
 	if [ $? -gt 0 ]
 	then
@@ -36,8 +36,8 @@ do
 	
 	for i in `seq 1 10`
 	do
-		sleep 6
 		echo -n "#"
+		sleep 6
 	done
 	
 done
