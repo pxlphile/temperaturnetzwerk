@@ -32,9 +32,9 @@ do
 		echo "Ein Fehler trat beim Aufruf von scp auf: $result."
 	fi
 	
-	for i in `seq 1 12`
+	for i in `seq 1 10`
 	do
-		sleep 5
+		sleep 6
 		echo -n "#"
 	done
 	

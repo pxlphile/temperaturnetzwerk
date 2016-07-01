@@ -20,9 +20,14 @@ def readTemp():
 def writeTempToDb(temp):
 	conn = sqlite3.connect('temperatur.db')
 	c = conn.cursor()
-	#	c.execute('''create table temperatur(datum text, temp real)''')
+	#	c.execute('''sqlitezeugs''')
+	#	CREATE TABLE `temperatur` (
+	#		`id`	INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+	#		`datum`	text,
+	#		`temp`	real
+	#		);
 	currDate = strftime("%Y-%m-%d %H:%M:%S", gmtime())
-	c.execute("insert into temperatur values (?,?)", (currDate, temp))
+	c.execute("insert into temperatur (datum,temp) values (?,?)", (currDate, temp))
 	conn.commit()
 	conn.close()
 

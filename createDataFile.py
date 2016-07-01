@@ -31,7 +31,7 @@ def main():
 	closeDb()
 
 def readFromDb():
-	result = dbCursor.execute("select * from temperatur")
+	result = dbCursor.execute("select datum,temp from temperatur")
 	return result
 
 def updateAverage(temp):
