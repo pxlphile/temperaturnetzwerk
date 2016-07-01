@@ -36,11 +36,6 @@ def generateDataForLast24Hours():
 	dbResult = readLast24HoursDataFromDb()
 	writeDateFile("datefileDay.txt", dbResult)
 
-def writeDateFile(dateFileName, dbResult):
-	with open(dateFileName,"w") as outputFile:
-		for row in dbResult:
-			writeDataSet(row, outputFile)
-
 def readAllFromDb():
 	return dbCursor.execute("select t.datum,t.temp from `temperatur` t \
 	ORDER BY t.datum ASC")
@@ -59,6 +54,12 @@ def readLast24HoursDataFromDb():
 	return dbCursor.execute("SELECT t.datum,t.temp FROM `temperatur` t \
 	where t.datum >= date('now', '-1 days') \
 	ORDER BY t.datum ASC")
+
+
+def writeDateFile(dateFileName, dbResult):
+	with open(dateFileName,"w") as outputFile:
+		for row in dbResult:
+			writeDataSet(row, outputFile)
 
 def writeDataSet(row, outputFile):
 		outputFile.write('"' + row[0] +'"')

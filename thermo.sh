@@ -27,6 +27,9 @@ do
 		exit 1
 	fi
 	
+	echo "Erzeuge HTML-Datei"
+	python createhtml.py
+	
 	echo "FTP-Zeug kommt hier her"
 	#scp user@ssh.server-he.de:temperatur-alle.png temperatur-heute.png temperatur.html 
 	if [ $? -gt 0 ]
