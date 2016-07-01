@@ -12,16 +12,52 @@ rollingAverage = None
 
 def main():
 	openDb()
-	dbResult = readFromDb()
 	
-	with open("datefile.txt","w") as outputFile:
-		for row in dbResult:
-			writeDataSet(row, outputFile)
+	generateDataForAll()
+	generateDataForMonth()
+	generateDataForWeek()
+	generateDataForLast24Hours()
 	
 	closeDb()
 
-def readFromDb():
-	return dbCursor.execute("select datum,temp from temperatur")
+def generateDataForAll():
+	dbResult = readAllFromDb()
+	writeDateFile("datefile.txt", dbResult)
+
+def generateDataForMonth():
+	dbResult = readMonthDataFromDb()
+	writeDateFile("datefileMonth.txt",dbResult)
+
+def generateDataForWeek():
+	dbResult = readWeekDataFromDb()
+	writeDateFile("datefileWeek.txt", dbResult)
+
+def generateDataForLast24Hours():
+	dbResult = readLast24HoursDataFromDb()
+	writeDateFile("datefileDay.txt", dbResult)
+
+def writeDateFile(dateFileName, dbResult):
+	with open(dateFileName,"w") as outputFile:
+		for row in dbResult:
+			writeDataSet(row, outputFile)
+
+def readAllFromDb():
+	return dbCursor.execute("select t.datum,t.temp from temperatur t")
+
+def readMonthDataFromDb():
+	return dbCursor.execute("SELECT t.datum,t.temp FROM `temperatur` t \
+	where t.datum >= date('now', '-1 months') \
+	ORDER BY t.datum ASC")
+
+def readWeekDataFromDb():
+	return dbCursor.execute("SELECT t.datum,t.temp FROM `temperatur` t \
+	where t.datum >= date('now', '-7 days') \
+	ORDER BY t.datum ASC")
+
+def readLast24HoursDataFromDb():
+	return dbCursor.execute("SELECT t.datum,t.temp FROM `temperatur` t \
+	where t.datum >= date('now', '-1 days') \
+	ORDER BY t.datum ASC")
 
 def writeDataSet(row, outputFile):
 		outputFile.write('"' + row[0] +'"')
