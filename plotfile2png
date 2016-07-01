@@ -10,9 +10,9 @@ set autoscale x
 set datafile separator ';'
 set grid xtics ytics
 set term png
-set output "temperaturAll.png"
+set output "target/temperaturAll.png"
 #show xrange
-plot 'datefile.txt' using 1:2 title "Temperatur (alles)" with lines lt rgb "#0000FF" lw 3
+plot 'target/datefile.txt' using 1:2 title "Temperatur (alles)" with lines lt rgb "#0000FF" lw 3
 
 set xdata time
 set timefmt "%Y-%m-%d %H:%M:%S"
@@ -22,9 +22,9 @@ set autoscale x
 set datafile separator ';'
 set grid xtics ytics
 set term png
-set output "temperaturMonth.png"
+set output "target/temperaturMonth.png"
 #show xrange
-plot 'datefileMonth.txt' using 1:2 title "Temperatur -1 Monat" with lines lt rgb "#0000FF" lw 3
+plot 'target/datefileMonth.txt' using 1:2 title "Temperatur -1 Monat" with lines lt rgb "#0000FF" lw 3
 
 set xdata time
 set timefmt "%Y-%m-%d %H:%M:%S"
@@ -34,9 +34,9 @@ set autoscale x
 set datafile separator ';'
 set grid xtics ytics
 set term png
-set output "temperaturWeek.png"
+set output "target/temperaturWeek.png"
 #show xrange
-plot 'datefileWeek.txt' using 1:2 title "Temperatur -7 Tage" with lines lt rgb "#0000FF" lw 3
+plot 'target/datefileWeek.txt' using 1:2 title "Temperatur -7 Tage" with lines lt rgb "#0000FF" lw 3
 
 set xdata time
 set timefmt "%Y-%m-%d %H:%M:%S"
@@ -46,6 +46,6 @@ set autoscale x
 set datafile separator ';'
 set grid xtics ytics
 set term png
-set output "temperaturDay.png"
+set output "target/temperaturDay.png"
 #show xrange
-plot 'datefileDay.txt' using 1:2 title "Temperatur -24 Std." with lines lt rgb "#0000FF" lw 3
+plot 'target/datefileDay.txt' using 1:2 title "Temperatur -24 Std." with lines lt rgb "#0000FF" lw 3

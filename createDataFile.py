@@ -8,7 +8,7 @@ import os
 dbConnection = None
 dbCursor = None
 DELIMITER = ";"
-rollingAverage = None
+TARGET_DIR = "target/"
 
 def main():
 	openDb()
@@ -57,7 +57,7 @@ def readLast24HoursDataFromDb():
 
 
 def writeDateFile(dateFileName, dbResult):
-	with open(dateFileName,"w") as outputFile:
+	with open(TARGET_DIR + dateFileName,"w") as outputFile:
 		for row in dbResult:
 			writeDataSet(row, outputFile)
 
