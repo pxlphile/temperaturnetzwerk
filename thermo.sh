@@ -11,6 +11,7 @@ do
 		continue
 	fi
 	
+	echo "Erzeuge Datafiles"
 	python "$thermDir/createDataFile.py"
 	if [ $? -gt 0 ]
 	then
@@ -18,6 +19,7 @@ do
 		exit 1
 	fi
 	
+	echo "Erzeuge Grafiken"
 	gnuplot plotfile2png
 	if [ $? -gt 0 ]
 	then

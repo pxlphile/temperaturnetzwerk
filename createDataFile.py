@@ -42,7 +42,8 @@ def writeDateFile(dateFileName, dbResult):
 			writeDataSet(row, outputFile)
 
 def readAllFromDb():
-	return dbCursor.execute("select t.datum,t.temp from temperatur t")
+	return dbCursor.execute("select t.datum,t.temp from `temperatur` t \
+	ORDER BY t.datum ASC")
 
 def readMonthDataFromDb():
 	return dbCursor.execute("SELECT t.datum,t.temp FROM `temperatur` t \

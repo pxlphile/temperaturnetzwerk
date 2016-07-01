@@ -4,15 +4,48 @@ set ylabel "Temperatur in °C"
 
 set xdata time
 set timefmt "%Y-%m-%d %H:%M:%S"
-set xrange["2016-06-09 11:00:00":"2016-06-09 14:10:00"]
+#set xrange["2016-06-09 11:00:00":"2016-06-09 14:10:00"]
 set yrange[*:*]
 set autoscale x
 set datafile separator ';'
 set grid xtics ytics
-
 set term png
-set output "temperatur.png"
-
+set output "temperaturAll.png"
 #show xrange
+plot 'datefile.txt' using 1:2 title "Temperatur (alles)" with lines lt rgb "#0000FF" lw 3
 
-plot 'datefile.txt' using 1:2 title "Temperatur" with lines lt rgb "#0000FF" lw 3
+set xdata time
+set timefmt "%Y-%m-%d %H:%M:%S"
+#set xrange["2016-06-09 11:00:00":"2016-06-09 14:10:00"]
+set yrange[*:*]
+set autoscale x
+set datafile separator ';'
+set grid xtics ytics
+set term png
+set output "temperaturMonth.png"
+#show xrange
+plot 'datefileMonth.txt' using 1:2 title "Temperatur -1 Monat" with lines lt rgb "#0000FF" lw 3
+
+set xdata time
+set timefmt "%Y-%m-%d %H:%M:%S"
+#set xrange["2016-06-09 11:00:00":"2016-06-09 14:10:00"]
+set yrange[*:*]
+set autoscale x
+set datafile separator ';'
+set grid xtics ytics
+set term png
+set output "temperaturWeek.png"
+#show xrange
+plot 'datefileWeek.txt' using 1:2 title "Temperatur -7 Tage" with lines lt rgb "#0000FF" lw 3
+
+set xdata time
+set timefmt "%Y-%m-%d %H:%M:%S"
+#set xrange["2016-06-09 11:00:00":"2016-06-09 14:10:00"]
+set yrange[*:*]
+set autoscale x
+set datafile separator ';'
+set grid xtics ytics
+set term png
+set output "temperaturDay.png"
+#show xrange
+plot 'datefileDay.txt' using 1:2 title "Temperatur -24 Std." with lines lt rgb "#0000FF" lw 3
