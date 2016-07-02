@@ -47,9 +47,9 @@ def fetchTemp():
 def createTail():
 	return """
 		</h1>
-		<img src="temperaturDay.png" />
-		<img src="temperaturWeek.png" />
-		<img src="temperaturMonth.png" />
+		<img src="temperaturDay.png" /><br />
+		<img src="temperaturWeek.png" /><br />
+		<img src="temperaturMonth.png" /><br />
 		<img src="temperaturAll.png" />
 	</body>
 </html>"""
