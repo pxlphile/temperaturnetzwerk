@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-# -*- coding: latin-1 -*-
 
 import datetime
 from time import strftime,gmtime,sleep
@@ -11,18 +10,19 @@ dbConnection = None
 dbCursor = None
 
 def main():
-	htmlHead = createHead()
-	currDate = strftime("%Y-%m-%d %H:%M:%S", gmtime())
 	currTemp = fetchTemp()
+	htmlHead = createHead(currTemp)
+	currDate = strftime("%Y-%m-%d %H:%M:%S", gmtime())
+	tempPart = createTempDiv(currTemp)
 	htmlTail = createTail()
 	
-	writeHTMLFile(htmlHead, currDate, currTemp, htmlTail)
+	writeHTMLFile(htmlHead, currDate, tempPart, htmlTail)
 
-def createHead():
+def createHead(currTemp):
 	return """<!DOCTYPE html>
 <html>
 	<head>
-		<title>Willkommen zum Temperatur Netzwerk: Node: Keller</title>
+		<title>""" + currTemp + """ - Willkommen zum Temperatur Netzwerk: Node: Keller</title>
 		<link href="style.css" rel="stylesheet" type="text/css" />
 		<meta http-equiv="refresh" content="300" />
 		<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
@@ -36,13 +36,15 @@ def fetchTemp():
         openDb()
 
 	tempResult = readLatestTempFromDb()
-
+	tempString = None
 	for row in tempResult:
-		return """
-		<div class='currTemp'>
-		 """ + str(row[0]) + "°C</div>"
+		tempString = "{0:.1f}".format(row[0]) + " &deg;C"
 
 	closeDb()
+	return tempString
+
+def createTempDiv(currTemp):
+	return "<div class='currTemp'>" + currTemp + "</div>"
 
 def createTail():
 	return """
