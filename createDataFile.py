@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 from subprocess import check_output
 import datetime
-from time import strftime,gmtime
+from time import strftime
 import sqlite3
 import os
 

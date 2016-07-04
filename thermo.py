@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 from subprocess import check_output
 import datetime
-from time import strftime,gmtime,sleep
+from time import strftime,localtime,sleep
 import sqlite3
 import os
 import sys
@@ -24,7 +24,7 @@ def readTemp():
 def writeTempToDb(temp):
 	conn = sqlite3.connect('temperatur.db')
 	c = conn.cursor()
-	currDate = strftime("%Y-%m-%d %H:%M:%S", gmtime())
+	currDate = strftime("%Y-%m-%d %H:%M:%S", localtime())
 	c.execute("insert into temperatur (datum,temp) values (?,?)", (currDate, temp))
 	conn.commit()
 	conn.close()

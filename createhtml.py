@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 import datetime
-from time import strftime,gmtime,sleep
+from time import strftime,localtime,sleep
 import sqlite3
 import os
 import sys
@@ -12,7 +12,7 @@ dbCursor = None
 def main():
 	currTemp = fetchTemp()
 	htmlHead = createHead(currTemp)
-	currDate = strftime("%Y-%m-%d %H:%M:%S", gmtime())
+	currDate = strftime("%Y-%m-%d %H:%M:%S", localtime())
 	tempPart = createTempDiv(currTemp)
 	htmlTail = createTail()
 	
