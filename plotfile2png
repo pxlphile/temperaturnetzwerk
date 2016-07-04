@@ -14,7 +14,7 @@ set grid xtics ytics
 set term png
 set output "target/temperaturAll.png"
 #show xrange
-plot 'target/datefile.txt' using 1:2 title "Temperatur (alles)" with lines lt rgb "#0000FF" lw 2
+plot 'target/datefile.txt' using 1:2 title "Temperatur (alles)" with lines smooth sbezier lt rgb "#0000FF" lw 2
 
 set xdata time
 set timefmt "%Y-%m-%d %H:%M:%S"
@@ -26,7 +26,7 @@ set grid xtics ytics
 set term png
 set output "target/temperaturMonth.png"
 #show xrange
-plot 'target/datefileMonth.txt' using 1:2 title "Temperatur -1 Monat" with lines lt rgb "#0000FF" lw 2
+plot 'target/datefileMonth.txt' using 1:2 title "Temperatur -1 Monat" with lines smooth sbezier lt rgb "#0000FF" lw 2
 
 set xdata time
 set timefmt "%Y-%m-%d %H:%M:%S"
@@ -38,7 +38,7 @@ set grid xtics ytics
 set term png
 set output "target/temperaturWeek.png"
 #show xrange
-plot 'target/datefileWeek.txt' using 1:2 title "Temperatur -7 Tage" with lines lt rgb "#0000FF" lw 2
+plot 'target/datefileWeek.txt' using 1:2 title "Temperatur -7 Tage" with lines smooth sbezier lt rgb "#0000FF" lw 2
 
 set xdata time
 set timefmt "%Y-%m-%d %H:%M:%S"
@@ -50,4 +50,4 @@ set grid xtics ytics
 set term png
 set output "target/temperaturDay.png"
 #show xrange
-plot 'target/datefileDay.txt' using 1:2 title "Temperatur -24 Std." with lines lt rgb "#0000FF" lw 2
+plot 'target/datefileDay.txt' using 1:2 title "Temperatur -24 Std." with lines smooth sbezier lt rgb "#0000FF" lw 2
