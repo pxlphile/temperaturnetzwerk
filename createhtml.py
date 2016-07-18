@@ -22,7 +22,11 @@ def createHead(currTemp):
 	return """<!DOCTYPE html>
 <html>
 	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>""" + currTemp + """ - Willkommen zum Temperatur Netzwerk: Node: Keller</title>
+		<link href="css/bootstrap.min.css" rel="stylesheet">
 		<link href="style.css" rel="stylesheet" type="text/css" />
 		<meta http-equiv="refresh" content="300" />
 		<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
@@ -30,7 +34,11 @@ def createHead(currTemp):
 		<meta http-equiv="Expires" content="0" />
 	</head>
 	<body>
-		<h1 class='temp'>"""
+		<div class="container">
+			<div class="col-md-6">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h1 class="date">"""
 
 def fetchTemp():
         openDb()
@@ -44,7 +52,25 @@ def fetchTemp():
 	return tempString
 
 def createTempDiv(currTemp):
-	return "<div class='currTemp'>" + currTemp + "</div>"
+	return """</div><div class="panel-body">
+        <h1 class="temp">Aktuell:
+          <button type="button" class="btn btn-success btn-lg currTemp"> <span class="glyphicon glyphicon-signal" aria-hidden="true"></span>""" + currTemp + """</button>
+</h1>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h1 class="system-state">Systemstatus</h1>
+      </div>
+      <div class="panel-body">
+        <div class="alert alert-success" role="alert"> <span class="glyphicon glyphicon-ok"></span>&nbsp; System l&auml;uft </div>
+        <div class="alert alert-danger hidden" role="alert"> <span class="glyphicon glyphicon-alert"></span>&nbsp; System nicht synchron </div>
+      </div>
+    </div>
+  </div>
+</div>"""
 
 def createTail():
 	return """
