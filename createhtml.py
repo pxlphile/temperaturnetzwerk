@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 import datetime
-from time import strftime,localtime,sleep
+from time import strftime,localtime,sleep,time
 import sqlite3
 import os
 import sys
@@ -38,7 +38,7 @@ def createHead(currTemp):
 			<div class="col-md-6">
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						<h1 class="date">"""
+						<h1 class="date" data-timestamp='""" + str(int(time())) + "'>";
 
 def fetchTemp():
         openDb()
@@ -52,33 +52,45 @@ def fetchTemp():
 	return tempString
 
 def createTempDiv(currTemp):
-	return """</div><div class="panel-body">
-        <h1 class="temp">Aktuell:
-          <button type="button" class="btn btn-success btn-lg currTemp"> <span class="glyphicon glyphicon-signal" aria-hidden="true"></span>""" + currTemp + """</button>
-</h1>
-      </div>
-    </div>
-  </div>
-  <div class="col-md-6">
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h1 class="system-state">Systemstatus</h1>
-      </div>
-      <div class="panel-body">
-        <div class="alert alert-success" role="alert"> <span class="glyphicon glyphicon-ok"></span>&nbsp; System l&auml;uft </div>
-        <div class="alert alert-danger hidden" role="alert"> <span class="glyphicon glyphicon-alert"></span>&nbsp; System nicht synchron </div>
-      </div>
-    </div>
-  </div>
+	return """</h1>
+					</div>
+					<div class="panel-body">
+						<h1 class="temp">Aktuell:
+							<button type="button" class="btn btn-success btn-lg currTemp">
+								<span class="glyphicon glyphicon-signal" aria-hidden="true"></span>""" + currTemp + """
+							</button>
+						</h1>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-6">
+				<div class="panel panel-default system-state">
+					<div class="panel-heading">
+						<h1>Systemstatus</h1>
+					</div>
+					<div class="panel-body">
+			<div class="alert alert-success" role="alert">
+				<span class="glyphicon glyphicon-ok"></span>&nbsp; System l&auml;uft
+			</div>
+			<div class="alert alert-danger hidden" role="alert">
+				<span class="glyphicon glyphicon-alert"></span>&nbsp; System l&auml;uft nicht synchron.
+			</div>
+		</div>
+	</div>
 </div>"""
 
 def createTail():
 	return """
-		</h1>
-		<img src="temperaturDay.png" /><br />
-		<img src="temperaturWeek.png" /><br />
-		<img src="temperaturMonth.png" /><br />
-		<img src="temperaturAll.png" />
+		<div class="col-md-12">
+			<img src="temperaturDay.png" class="img-responsive" />
+			<img src="temperaturWeek.png" class="img-responsive" /><br />
+			<img src="temperaturMonth.png" class="img-responsive" />
+			<img src="temperaturAll.png" class="img-responsive"/>
+		</div>
+		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+		<script src="js/jquery.min.js"></script>
+		<!-- Include all compiled plugins (below), or include individual files as needed -->
+		<script src="js/bootstrap.min.js"></script>
 	</body>
 </html>"""
 
