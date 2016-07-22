@@ -31,5 +31,5 @@ function resolveStatus(jsonResult) {
 		$(".panel-body .systemState div.alert-success").removeClass("hidden");
 		$(".panel-body .systemState div.alert-danger").removeClass("hidden");
 	}
-	$(".panel-body .systemState").title(jsonResult.returnText);
+	$(".panel-body .systemState").attr("title", jsonResult.returnText);
 }
