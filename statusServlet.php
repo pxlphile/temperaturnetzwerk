@@ -10,7 +10,7 @@
  * This file can be tested with PHPs commandline interface php like this:
  * <code>php statusServlet.php 'ts=1469167424'</code>
  */
-define("TIMESTAMP_POST_PARAMETER_NAME", "ts");
+define("TIMESTAMP_GET_PARAMETER_NAME", "ts");
 define("TWO_MINUTES_IN_SECONDS", 120);
 define("DEBUG", false);
 define("RETURN_CODE_OK", 0);
@@ -19,22 +19,22 @@ define("RETURN_CODE_WRONG_TS_FORMAT", 2);
 define("RETURN_CODE_NO_TS_PARAMETER", 4);
 
 /**
- * Validates if a POST parameter is set.
- * Converts commandline parameters to POST parameters if run on commandline.
+ * Validates if a GET parameter is set.
+ * Converts commandline parameters to GET parameters if run on commandline.
  */
 function setupCliParameter($cliParameter) {
-	if(!isset($cliParameter)) {
+	if(! (isset($cliParameter) || isset($_GET[TIMESTAMP_GET_PARAMETER_NAME]))) {
 		print "No parameter. Sorry, I am giving up.";
 		exit(254);
 	}
 	
 	if (!isset($_SERVER["REQUEST_METHOD"])) {
 		// script is not interpreted due to some call via http, so it must be called from the commandline
-		parse_str($cliParameter, $_POST); //convert CLI parameters to POST parameters
+		parse_str($cliParameter, $_GET); //convert CLI parameters to GET parameters
 	}
 	
-	if(!isset($_POST[TIMESTAMP_POST_PARAMETER_NAME])) {
-		print "No post parameter. Sorry, I am giving up.";
+	if(!isset($_GET[TIMESTAMP_GET_PARAMETER_NAME])) {
+		print "No get parameter. Sorry, I am giving up.";
 		exit(253);
 	}
 }
@@ -104,10 +104,10 @@ function buildCurrentUtcTimestamp() {
 }
 
 /**
- * returns the client timestamp via POST parameter. This timestamp is regarded as GMT/UTC.
+ * returns the client timestamp via GET parameter. This timestamp is regarded as GMT/UTC.
  */
 function getApplicationTimestamp() {
-	return $_POST[TIMESTAMP_POST_PARAMETER_NAME];
+	return $_GET[TIMESTAMP_GET_PARAMETER_NAME];
 }
 
 /**
