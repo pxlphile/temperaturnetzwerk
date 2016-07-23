@@ -69,15 +69,19 @@ def createTempDiv(currTemp):
 						<h1>Systemstatus</h1>
 					</div>
 					<div class="panel-body">
-			<div class="alert alert-success" role="alert">
-				<span class="glyphicon glyphicon-ok"></span>&nbsp; System l&auml;uft
+						<div class="alert alert-warning hidden" role="alert">
+							<span class="glyphicon glyphicon-warning"></span>&nbsp; System l&auml;uft
+						</div>
+						<div class="alert alert-success hidden" role="alert">
+							<span class="glyphicon glyphicon-ok"></span>&nbsp; System l&auml;uft
+						</div>
+						<div class="alert alert-danger hidden" role="alert">
+							<span class="glyphicon glyphicon-danger"></span>&nbsp; System l&auml;uft nicht synchron.
+						</div>
+					</div>
+				</div>
 			</div>
-			<div class="alert alert-danger hidden" role="alert">
-				<span class="glyphicon glyphicon-alert"></span>&nbsp; System l&auml;uft nicht synchron.
-			</div>
-		</div>
-	</div>
-</div>"""
+"""
 
 def createTail():
 	return """
