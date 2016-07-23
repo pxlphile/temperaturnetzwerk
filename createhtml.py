@@ -69,7 +69,7 @@ def createTempDiv(currTemp):
 						<h1>Systemstatus</h1>
 					</div>
 					<div class="panel-body">
-						<div class="alert alert-warning hidden" role="alert">
+						<div class="alert alert-warning" role="alert">
 							<span class="glyphicon glyphicon-warning"></span>&nbsp; System l&auml;uft
 						</div>
 						<div class="alert alert-success hidden" role="alert">
