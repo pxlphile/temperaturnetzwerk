@@ -21,9 +21,10 @@ function callStatusServlet(timestamp) {
 }
 
 function resolveStatus(jsonResult) {
-	var successDiv = $(".panel-body .systemState div.alert-success");
-	var warningDiv = $(".panel-body .systemState div.alert-warning");
-	var dangerDiv = $(".panel-body .systemState div.alert-danger");
+	var successDiv = $(".system-state .panel-body div.alert-success");
+	var warningDiv = $(".system-state .panel-body div.alert-warning");
+	var dangerDiv = $(".system-state .panel-body div.alert-danger");
+
 	if (jsonResult.resultCode == 0) {
 		showDiv(successDiv);
 		hideDiv(warningDiv);
