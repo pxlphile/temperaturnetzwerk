@@ -21,15 +21,30 @@ function callStatusServlet(timestamp) {
 }
 
 function resolveStatus(jsonResult) {
-	if (jsonResult.returnCode == 0) {
-		$(".panel-body .systemState div.alert-success").addClass("hidden");
-		$(".panel-body .systemState div.alert-danger").removeClass("hidden");
-	} else if (jsonResult.returnCode == 1) {
-		$(".panel-body .systemState div.alert-success").addClass("hidden");
-		$(".panel-body .systemState div.alert-danger").removeClass("hidden");
+	var successDiv = $(".system-state .panel-body div.alert-success");
+	var warningDiv = $(".system-state .panel-body div.alert-warning");
+	var dangerDiv = $(".system-state .panel-body div.alert-danger");
+
+	if (jsonResult.resultCode == 0) {
+		showDiv(successDiv);
+		hideDiv(warningDiv);
+		hideDiv(dangerDiv);
+	} else if (jsonResult.resultCode == 1) {
+		hideDiv(successDiv);
+		hideDiv(warningDiv);
+		showDiv(dangerDiv);
 	} else {
-		$(".panel-body .systemState div.alert-success").removeClass("hidden");
-		$(".panel-body .systemState div.alert-danger").removeClass("hidden");
+		hideDiv(successDiv);
+		showDiv(warningDiv);
+		hideDiv(dangerDiv);
 	}
-	$(".panel-body .systemState").title(jsonResult.returnText);
+	$(".panel-body .systemState").attr("title", jsonResult.resultText);
+}
+
+function hideDiv(jqueryElement) {
+	jqueryElement.addClass("hidden");
+}
+
+function showDiv(jqueryElement) {
+	jqueryElement.removeClass("hidden");
 }
