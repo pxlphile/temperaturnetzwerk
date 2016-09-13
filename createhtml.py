@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 import datetime
-from time import strftime,localtime,sleep,time
+from time import strftime,localtime,sleep,time,gmtime
 import sqlite3
 import os
 import sys

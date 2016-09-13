@@ -17,6 +17,7 @@ define("RETURN_CODE_OK", 0);
 define("RETURN_CODE_UNSYNCED", 1);
 define("RETURN_CODE_WRONG_TS_FORMAT", 2);
 define("RETURN_CODE_NO_TS_PARAMETER", 4);
+define("SERVER_TIME_CORRECTION_IN_SECONDS", 7200);
 
 /**
  * Validates if a GET parameter is set.
@@ -83,13 +84,13 @@ function checkApplicationStatus() {
 		$responseData = buildResponse(
 			RETURN_CODE_UNSYNCED, 
 			$timeDelta, 
-			"Application timing doesn't look too well. Time differs by $timeDelta seconds.");
+			"Application timing doesn't look too well. Time differs by $timeDelta seconds. Server time is " . getFormattedDate());
 		deliverResponse($responseData, RETURN_CODE_UNSYNCED);
 	} else {
 		$responseData = buildResponse(
 			RETURN_CODE_OK, 
 			$timeDelta, 
-			"Application seems to do it's job. Time differs by $timeDelta seconds.");
+			"Application seems to do it's job. Time differs by $timeDelta seconds. Server time is " . getFormattedDate());
 		deliverResponse($responseData, RETURN_CODE_OK);
 	}
 }
@@ -100,7 +101,12 @@ function checkApplicationStatus() {
 function buildCurrentUtcTimestamp() {
 	$timeZoneOffset = date('Z');
 	debugln("timezone offset is $timeZoneOffset seconds");
-	return time() - $timeZoneOffset;
+	return time() - $timeZoneOffset + SERVER_TIME_CORRECTION_IN_SECONDS;
+}
+
+function getFormattedDate() {
+	$time = new DateTime;
+	return $time->format(DateTime::ATOM);
 }
 
 /**
@@ -139,3 +145,4 @@ checkApplicationStatus();
 
 exit(255); //fallback if things go bad
 ?>
+
