@@ -42,9 +42,11 @@ Now we're good to start.
 
 ## Get the code
 This is just an example. Just take care that the project directory which is referenced here is consistently replace ;)
-```cd
-mkdir projects && cd projects
-get clone https://github.com/pxlphile/temperaturnetzwerk```
+> cd
+
+> mkdir projects && cd projects
+
+> get clone https://github.com/pxlphile/temperaturnetzwerk```
 
 ## Initialize SQLite database
 To create the climate database just call in the project directory where you cloned the project:
