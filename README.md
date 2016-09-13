@@ -35,8 +35,11 @@ other software needed:
 - Python SQLite module
 - git
 - lftp
-	Install this one with `sudo apt-get install lftp`
-	If you want to have SFTP support you have to [compile it yourself](http://lftp.yar.ru/get.html)
+	Install this one with `sudo apt-get install lftp`. Please note that the Rasbian package is not compiled
+	with SSH-support so you can't use SFTP.	If you want to have SFTP support you have to 
+	[compile it yourself](http://lftp.yar.ru/get.html)
+- gnuplot
+	Install this one with `sudo apt-get install gnuplot`
 
 Now we're good to start.
 
@@ -56,3 +59,22 @@ To create the climate database just call in the project directory where you clon
 In order to remove duplicate directy references in different scripts, set the `CLIMATE_HOME` variable to your 
 project directory, for example
 >export CLIMATE_HOME=/home/pi/projects/temperaturnetzwerk
+
+## Create remote credential files
+These are needed for the constant upload of files to your remote server. Both files are one-liners:
+
+The content of `ftpserver.conf` should look like this: ftp://yourserver.com
+
+The content of `ftppasswd.conf` should look like this: username passphrase
+
+## Correct the thermo file
+Since pretty much every thermosensor has a different UUID it is neccessary to fix the file reference in `thermo.py`:
+Find the line which goes like:
+> path_to_driver = "/sys/bus/w1/devices/28-0316049898ff/w1_slave"
+and replace the UUID with yours.
+
+## Give it a go
+
+Time to start the engines. 
+- Start `./thermo.sh` to create a temperature reading every minute.
+- Start `./publish.sh` to generate graphics, HTML files and upload all artifacts to a remote server.
