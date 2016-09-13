@@ -19,10 +19,10 @@ the corresponding modules in the */etc/modules* file:
 Once started (either by reboot or by the modprobe command) there should exist a new special file per 
 thermosensor in the directory */sys/bus/w1/devices*
 
->ls -l /sys/bus/w1/devices
->insgesamt 0
->lrwxrwxrwx 1 root root 0 Sep 13 21:18 28-0316049898ff -> ../../../devices/w1_bus_master1/28-0316049898ff
->lrwxrwxrwx 1 root root 0 Sep 13 21:18 w1_bus_master1 -> ../../../devices/w1_bus_master1
+> ls -l /sys/bus/w1/devices
+> insgesamt 0
+> lrwxrwxrwx 1 root root 0 Sep 13 21:18 28-0316049898ff -> ../../../devices/w1_bus_master1/28-0316049898ff
+> lrwxrwxrwx 1 root root 0 Sep 13 21:18 w1_bus_master1 -> ../../../devices/w1_bus_master1
 
 Files that contain long numbers uniquely identify a single sensor. 
 
@@ -39,9 +39,9 @@ Now we're good to start.
 
 ## Get the code
 This is just an example. Just take care that the project directory which is referenced here is consistently replace ;)
->cd
->mkdir projects && cd projects
->get clone https://github.com/pxlphile/temperaturnetzwerk
+> cd
+> mkdir projects && cd projects
+> get clone https://github.com/pxlphile/temperaturnetzwerk
 
 ## Initialize SQLite database
 To create the climate database just call in the project directory where you cloned the project:
