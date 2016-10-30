@@ -44,7 +44,7 @@ other software needed:
 Now we're good to start.
 
 ## Get the code
-This is just an example. Just take care that the project directory which is referenced here is consistently replace ;)
+This is just an example. Just take care that the referenced project directory is consistently replaced ;)
 > cd
 
 > mkdir projects && cd projects
