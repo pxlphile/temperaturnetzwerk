@@ -63,9 +63,9 @@ project directory, for example
 ## Create remote credential files
 These are needed for the constant upload of files to your remote server. Both files are one-liners:
 
-The content of `ftpserver.conf` should look like this: ftp://yourserver.com
+The content of `ftpserver.conf` should look like this: `ftp://yourserver.com`
 
-The content of `ftppasswd.conf` should look like this: username passphrase
+The content of `ftppasswd.conf` should look like this: `username "passphrase"`
 
 ## Give it a go
 
