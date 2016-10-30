@@ -18,7 +18,7 @@ do
 	# acquire lock and read data
 	flock -n 9 || exit 1 
 
-	python "$thermDir/thermo.py"
+	python "$thermDir/thermo.py" 28-0316049898ff
 ) 9>/var/lock/temperaturnetzwerk
 
 	if [ $? -gt 0 ]
