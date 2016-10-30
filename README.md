@@ -49,7 +49,7 @@ This is just an example. Just take care that the referenced project directory is
 
 > mkdir projects && cd projects
 
-> get clone https://github.com/pxlphile/temperaturnetzwerk
+> git clone https://github.com/pxlphile/temperaturnetzwerk
 
 ## Initialize SQLite database
 To create the climate database just call in the project directory where you cloned the project:
