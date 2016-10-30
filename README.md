@@ -67,14 +67,8 @@ The content of `ftpserver.conf` should look like this: ftp://yourserver.com
 
 The content of `ftppasswd.conf` should look like this: username passphrase
 
-## Correct the thermo file
-Since pretty much every thermosensor has a different UUID it is neccessary to fix the file reference in `thermo.py`:
-Find the line which goes like:
-> path_to_driver = "/sys/bus/w1/devices/28-0316049898ff/w1_slave"
-and replace the UUID with yours.
-
 ## Give it a go
 
 Time to start the engines. 
-- Start `./thermo.sh` to create a temperature reading every minute.
+- Start `./thermo.sh <YOUR_SENSOR_UUID_GOES_HERE>` to create a temperature reading every minute.
 - Start `./publish.sh` to generate graphics, HTML files and upload all artifacts to a remote server.
