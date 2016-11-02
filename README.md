@@ -53,12 +53,12 @@ This is just an example. Just take care that the referenced project directory is
 
 ## Initialize SQLite database
 To create the climate database just call in the project directory where you cloned the project:
->python createDb.py
+> python createDb.py
 
 ## Set environment variables
-In order to remove duplicate directy references in different scripts, set the `CLIMATE_HOME` variable to your 
+In order to remove duplicate directory references in different scripts, set the `CLIMATE_HOME` variable to your 
 project directory, for example
->export CLIMATE_HOME=/home/pi/projects/temperaturnetzwerk
+> export CLIMATE_HOME=/home/pi/projects/temperaturnetzwerk
 
 ## Create remote credential files
 These are needed for the constant upload of files to your remote server. Both files are one-liners:

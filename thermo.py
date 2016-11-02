@@ -14,15 +14,23 @@ import re
 # measured in milli celsius.
 
 # In order to prepare the device see https://www.kompf.de/weather/pionewiremini.html 
-# or here
 
 ## globals
 
+# the sensor UUID is associated to the table row for possible data mining
 sensorUuid = "no sensor yet set"
-sqliteDbPath = "./temperatur.db"
-sqliteTableName = "temperatur"
+
+# Database properties
+# please refer to the sqlite documentation for naming conventions
+databaseFilePath = "./temperatur.db"
+databaseTableName = "temperatur"
+databaseColumnDate = "tempDate"
+databaseColumnTemperature = "temperature"
+databaseColumnSensorId = "sensorId"
+
 # ISO date format, f. e. 2016-11-12 13:14:15
 isoDateFormat = "%Y-%m-%d %H:%M:%S"
+
 debug = True
 
 ## Routines
@@ -38,7 +46,7 @@ def main(arguments):
 	temp = readTemp()
 	if debug:
 		print temp + "° C" 
-	writeTempToDb(temp)
+	writeTempToDb(temp, sensorUuid)
 
 def assertUuidArgumentExists(arguments):
 	# check sensor UUID parameter
@@ -78,14 +86,14 @@ def readTempFromFileContent(pathToDriver):
 	temperaturInCelsius = str(temperaturInMilliCelsius / 1000)
 	return temperaturInCelsius
 
-def writeTempToDb(temperatur):
-	global isoDateFormat, sqliteDbPath, sqliteTableName
+def writeTempToDb(temperature, sensorUuid):
+	global isoDateFormat, databaseFilePath, databaseTableName
 	
-	conn = sqlite3.connect(sqliteDbPath)
+	conn = sqlite3.connect(databaseFilePath)
 	dbCursor = conn.cursor()
 	
 	currentDate = strftime(isoDateFormat, localtime())
-	dbCursor.execute("insert into " + sqliteTableName + " (datum,temp) values (?,?)", (currentDate, temperatur))
+	dbCursor.execute("insert into " + databaseTableName + " (tempDate,temperature,sensorId) values (?,?,?)", (currentDate, temperature, sensorUuid))
 	
 	conn.commit()
 	conn.close()

@@ -1,20 +1,40 @@
 #!/usr/bin/env python
 import sqlite3
 
-dbName = 'temperatur.db'
+# Creates the initial database structure in the current directory.
+#
+# Please note: The table column names correspond directy to those in
+# thermo.py. If you plan to change the column names please change them
+# in both files.
 
-def create():
-	conn = sqlite3.connect(dbName)
+# please refer to the sqlite documentation for naming conventions
+databaseFilePath = "./temperatur.db"
+databaseTableName = "temperatur"
+databaseColumnDate = "tempDate"
+databaseColumnTemperature = "temperature"
+databaseColumnSensorId = "sensorId"
+
+def main():
+	conn = sqlite3.connect(databaseFilePath)
 	c = conn.cursor()
-	print "Create sqlite database" + dbName
+	print "Create sqlite database" + databaseFilePath
 	
-	c.execute("""
-CREATE TABLE `temperatur` (
-`id`	INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, 
-`datum`	text, 
-`temp`	real 
-);""")
-	conn.commit()	
+	c.execute("\
+CREATE TABLE `" + databaseTableName + "` (\
+`id`	INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, \
+`" + databaseColumnDate + "`		text, \
+`" + databaseColumnTemperature + "`	real, \
+`" + databaseColumnSensorId + "`	text);")
+	conn.commit()
+
+        c.execute("CREATE INDEX colDateIdx ON " + databaseTableName + "(" + databaseColumnDate + ")"
+        conn.commit()
+
+
+	c.execute("CREATE INDEX sensorIdx ON " + databaseTableName + "(" + databaseColumnSensorId + ")"
+        conn.commit()
+
 	conn.close()
 
-create()
+if __name__ == '__main__':
+	main()

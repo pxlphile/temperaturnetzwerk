@@ -5,6 +5,16 @@ from time import strftime
 import sqlite3
 import os
 
+# Creates a gnuplot'able data file from that measured temperature data points in the database
+
+# Database properties
+# please refer to the sqlite documentation for naming conventions
+databaseFilePath = "./temperatur.db"
+databaseTableName = "temperatur"
+databaseColumnDate = "tempDate"
+databaseColumnTemperature = "temperature"
+databaseColumnSensorId = "sensorId"
+
 dbConnection = None
 dbCursor = None
 DELIMITER = ";"
