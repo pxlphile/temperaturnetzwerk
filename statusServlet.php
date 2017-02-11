@@ -17,7 +17,7 @@ define("RETURN_CODE_OK", 0);
 define("RETURN_CODE_UNSYNCED", 1);
 define("RETURN_CODE_WRONG_TS_FORMAT", 2);
 define("RETURN_CODE_NO_TS_PARAMETER", 4);
-define("SERVER_TIME_CORRECTION_IN_SECONDS", 7200);
+define("SERVER_TIME_CORRECTION_IN_SECONDS", 3600);
 
 /**
  * Validates if a GET parameter is set.
