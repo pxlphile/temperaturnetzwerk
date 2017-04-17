@@ -15,26 +15,26 @@ databaseColumnTemperature = "temperature"
 databaseColumnSensorId = "sensorId"
 
 def main():
-	conn = sqlite3.connect(databaseFilePath)
-	c = conn.cursor()
-	print "Create sqlite database" + databaseFilePath
-	
-	c.execute("\
+    conn = sqlite3.connect(databaseFilePath)
+    c = conn.cursor()
+    print "Create sqlite database" + databaseFilePath
+
+    c.execute("\
 CREATE TABLE `" + databaseTableName + "` (\
 `id`	INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, \
 `" + databaseColumnDate + "`		text, \
 `" + databaseColumnTemperature + "`	real, \
 `" + databaseColumnSensorId + "`	text);")
-	conn.commit()
+    conn.commit()
 
-        c.execute("CREATE INDEX colDateIdx ON " + databaseTableName + "(" + databaseColumnDate + ")"
-        conn.commit()
+    c.execute("CREATE INDEX colDateIdx ON " + databaseTableName + "(" + databaseColumnDate + ")"
+    conn.commit()
 
 
-	c.execute("CREATE INDEX sensorIdx ON " + databaseTableName + "(" + databaseColumnSensorId + ")"
-        conn.commit()
+    c.execute("CREATE INDEX sensorIdx ON " + databaseTableName + "(" + databaseColumnSensorId + ")"
+    conn.commit()
 
-	conn.close()
+    conn.close()
 
 if __name__ == '__main__':
-	main()
+    main()
