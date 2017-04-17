@@ -101,8 +101,8 @@ def createTail():
 </html>"""
 
 def readLatestTempFromDb():
-        return dbCursor.execute("SELECT t.temp FROM `temperatur` t \
-        ORDER BY t.datum DESC Limit 1")
+        return dbCursor.execute("SELECT t.temperature FROM `temperatur` t \
+        ORDER BY t.tempDate DESC Limit 1")
 
 
 def openDb():
