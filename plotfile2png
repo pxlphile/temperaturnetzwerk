@@ -14,8 +14,9 @@ set grid xtics ytics
 set term png
 set output "target/temperaturAll.png"
 #show xrange
-plot 'target/datefile.txt' using 1:2 title "Alle Temperaturdaten" with lines smooth sbezier lt rgb "#0000FF" lw 2
-
+plot 'target/datefile.txt' using 1:2 title "Alle Temperaturdaten (max)" with lines smooth sbezier lt rgb "#FF0000" lw 1, \
+    'target/datefile.txt' using 1:3 title "Alle Temperaturdaten (avg)" with lines smooth sbezier lt rgb "#00FF00" lw 2, \
+    'target/datefile.txt' using 1:4 title "Alle Temperaturdaten (min)" with lines smooth sbezier lt rgb "#0000FF" lw 1
 set xdata time
 set timefmt "%Y-%m-%d %H:%M:%S"
 set yrange[*:*]
