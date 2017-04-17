@@ -25,10 +25,10 @@ CREATE TABLE `" + databaseTableName + "` (\
 `" + databaseColumnDate + "`		text, \
 `" + databaseColumnTemperature + "`	real, \
 `" + databaseColumnSensorId + "`	text);")
-    conn.commit()
+    # conn.commit()
 
     c.execute("CREATE INDEX colDateIdx ON " + databaseTableName + "(" + databaseColumnDate + ")"
-    conn.commit()
+    # conn.commit()
 
 
     c.execute("CREATE INDEX sensorIdx ON " + databaseTableName + "(" + databaseColumnSensorId + ")"
