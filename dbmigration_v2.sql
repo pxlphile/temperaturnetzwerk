@@ -12,3 +12,5 @@ DROP INDEX colDateIdx;
 -- run second part
 ALTER TABLE temperatur rename to temperatur_old;
 INSERT INTO temperatur(id, tempdate, temperature, sensorId) select id,datum,temp,sensorId from temperatur_old;
+DROP TABLE temperatur_old;
+VACUUM temperatur;
