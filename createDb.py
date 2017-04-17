@@ -20,7 +20,7 @@ def main():
     print "Create sqlite database" + databaseFilePath
 
     c.execute("""
-CREATE TABLE `" + databaseTableName + "` (\
+CREATE TABLE `""" + databaseTableName + """` (\
 `id`	INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, \
 `""" + databaseColumnDate + """`		text, \
 `""" + databaseColumnTemperature + """`	real, \
