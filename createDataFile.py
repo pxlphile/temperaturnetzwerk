@@ -83,7 +83,7 @@ def writeAllDateFile(dateFileName, dbResult):
         for row in dbResult:
             writeAllDataSet(row, outputFile)
 
-def writeDataSet(row, outputFile):
+def writeAllDataSet(row, outputFile):
     outputFile.write('"' + row[0] +'"')
     outputFile.write(DELIMITER)
     outputFile.write(str(row[1]))
