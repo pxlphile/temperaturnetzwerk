@@ -20,7 +20,6 @@ dbCursor = None
 DELIMITER = ";"
 TARGET_DIR = "target/"
 
-
 def main():
     openDb()
 
@@ -31,86 +30,62 @@ def main():
 
     closeDb()
 
-
 def generateDataForAll():
     dbResult = readAllFromDb()
-    writeAllDataSet("datefile.txt", dbResult)
-
+    writeDateFile("datefile.txt", dbResult)
 
 def generateDataForMonth():
     dbResult = readMonthDataFromDb()
-    writeDateFile("datefileMonth.txt", dbResult)
-
+    writeDateFile("datefileMonth.txt",dbResult)
 
 def generateDataForWeek():
     dbResult = readWeekDataFromDb()
     writeDateFile("datefileWeek.txt", dbResult)
 
-
 def generateDataForLast24Hours():
     dbResult = readLast24HoursDataFromDb()
     writeDateFile("datefileDay.txt", dbResult)
 
-
 def readAllFromDb():
-    return dbCursor.execute("SELECT t.tempDate, max(t.temperature), avg(t.temperature), min(t.temperature) \
-    FROM `temperatur` t GROUP BY date(tempDate) \
-    ORDER BY t.tempDate ASC")
-
+    return dbCursor.execute("select t.tempDate,t.temperature from `temperatur` t \
+	ORDER BY t.tempDate ASC")
 
 def readMonthDataFromDb():
     return dbCursor.execute("SELECT t.tempDate,t.temperature FROM `temperatur` t \
-    WHERE t.tempDate >= date('now', '-1 months') \
-    ORDER BY t.tempDate ASC")
-
+	where t.tempDate >= date('now', '-1 months') \
+	ORDER BY t.tempDate ASC")
 
 def readWeekDataFromDb():
     return dbCursor.execute("SELECT t.tempDate,t.temperature FROM `temperatur` t \
-    WHERE t.tempDate >= date('now', '-7 days') \
-    ORDER BY t.tempDate ASC")
-
+	where t.tempDate >= date('now', '-7 days') \
+	ORDER BY t.tempDate ASC")
 
 def readLast24HoursDataFromDb():
     return dbCursor.execute("SELECT t.tempDate,t.temperature FROM `temperatur` t \
-    WHERE t.tempDate >= date('now', '-1 days') \
-    ORDER BY t.tempDate ASC")
+	where t.tempDate >= date('now', '-1 days') \
+	ORDER BY t.tempDate ASC")
 
 
 def writeDateFile(dateFileName, dbResult):
-    with open(TARGET_DIR + dateFileName, "w") as outputFile:
+    with open(TARGET_DIR + dateFileName,"w") as outputFile:
         for row in dbResult:
             writeDataSet(row, outputFile)
 
-
 def writeDataSet(row, outputFile):
-    outputFile.write('"' + row[0] + '"')
+    outputFile.write('"' + row[0] +'"')
     outputFile.write(DELIMITER)
     outputFile.write(str(row[1]))
     outputFile.write("\n")
-
-
-def writeAllDataSet(row, outputFile):
-    outputFile.write('"' + row[0] + '"')
-    outputFile.write(DELIMITER)
-    outputFile.write(str(row[1]))
-    outputFile.write(DELIMITER)
-    outputFile.write(str(row[2]))
-    outputFile.write(DELIMITER)
-    outputFile.write(str(row[3]))
-    outputFile.write("\n")
-
 
 def openDb():
     global dbConnection
     global dbCursor
-    dbConnection = sqlite3.connect('temperatur.db')
+    dbConnection= sqlite3.connect('temperatur.db')
     dbCursor = dbConnection.cursor()
-
 
 def closeDb():
     global dbConnection
     dbConnection.close()
-
 
 if __name__ == '__main__':
     main()
