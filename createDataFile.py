@@ -34,7 +34,7 @@ def main():
 
 def generateDataForAll():
     dbResult = readAllFromDb()
-    writeDateFile("datefile.txt", dbResult)
+    writeAllDataSet("datefile.txt", dbResult)
 
 
 def generateDataForMonth():
@@ -89,6 +89,14 @@ def writeDataSet(row, outputFile):
     for column in row:
         outputFile.write(DELIMITER)
         outputFile.write(str(column))
+    outputFile.write("\n")
+
+
+def writeAllDataSet(row, outputFile):
+    outputFile.write('"' + row[0] + '"')
+    for i in range(1, 4)
+        outputFile.write(DELIMITER)
+        outputFile.write(str(row[i]))
     outputFile.write("\n")
 
 
