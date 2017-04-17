@@ -32,7 +32,7 @@ def main():
 
 def generateDataForAll():
     dbResult = readAllFromDb()
-    writeDateFile("datefile.txt", dbResult)
+    writeAllDataSet("datefile.txt", dbResult)
 
 def generateDataForMonth():
     dbResult = readMonthDataFromDb()
@@ -47,8 +47,9 @@ def generateDataForLast24Hours():
     writeDateFile("datefileDay.txt", dbResult)
 
 def readAllFromDb():
-    return dbCursor.execute("select t.tempDate,t.temperature from `temperatur` t \
-	ORDER BY t.tempDate ASC")
+    return dbCursor.execute("SELECT t.tempDate, max(t.temperature), avg(t.temperature), min(t.temperature) \
+    FROM `temperatur` t GROUP BY date(tempDate) \
+    ORDER BY t.tempDate ASC")
 
 def readMonthDataFromDb():
     return dbCursor.execute("SELECT t.tempDate,t.temperature FROM `temperatur` t \
@@ -75,6 +76,16 @@ def writeDataSet(row, outputFile):
     outputFile.write('"' + row[0] +'"')
     outputFile.write(DELIMITER)
     outputFile.write(str(row[1]))
+    outputFile.write("\n")
+
+def writeAllDataSet(row, outputFile):
+    outputFile.write('"' + row[0] +'"')
+    outputFile.write(DELIMITER)
+    outputFile.write(str(row[1]))
+    outputFile.write(DELIMITER)
+    outputFile.write(str(row[2]))
+    outputFile.write(DELIMITER)
+    outputFile.write(str(row[3]))
     outputFile.write("\n")
 
 def openDb():
