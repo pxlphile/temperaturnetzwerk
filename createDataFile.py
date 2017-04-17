@@ -31,56 +31,46 @@ def main():
 
     closeDb()
 
-
 def generateDataForAll():
     dbResult = readAllFromDb()
     writeDateFile("datefile.txt", dbResult)
-
 
 def generateDataForMonth():
     dbResult = readMonthDataFromDb()
     writeDateFile("datefileMonth.txt", dbResult)
 
-
 def generateDataForWeek():
     dbResult = readWeekDataFromDb()
     writeDateFile("datefileWeek.txt", dbResult)
-
 
 def generateDataForLast24Hours():
     dbResult = readLast24HoursDataFromDb()
     writeDateFile("datefileDay.txt", dbResult)
 
-
 def readAllFromDb():
     return dbCursor.execute("SELECT tempDate, max(temperature), avg(temperature), min(temperature)\
-	FROM `temperatur` GROUP BY date(tempDate) \
-	ORDER BY t.tempDate ASC")
-
+    FROM `temperatur` GROUP BY date(tempDate) \
+    ORDER BY t.tempDate ASC")
 
 def readMonthDataFromDb():
     return dbCursor.execute("SELECT t.tempDate,t.temperature FROM `temperatur` t \
-	WHERE t.tempDate >= date('now', '-1 months') \
-	ORDER BY t.tempDate ASC")
-
+    WHERE t.tempDate >= date('now', '-1 months') \
+    ORDER BY t.tempDate ASC")
 
 def readWeekDataFromDb():
     return dbCursor.execute("SELECT t.tempDate,t.temperature FROM `temperatur` t \
-	WHERE t.tempDate >= date('now', '-7 days') \
-	ORDER BY t.tempDate ASC")
-
+    WHERE t.tempDate >= date('now', '-7 days') \
+    ORDER BY t.tempDate ASC")
 
 def readLast24HoursDataFromDb():
     return dbCursor.execute("SELECT t.tempDate,t.temperature FROM `temperatur` t \
 	WHERE t.tempDate >= date('now', '-1 days') \
 	ORDER BY t.tempDate ASC")
 
-
 def writeDateFile(dateFileName, dbResult):
     with open(TARGET_DIR + dateFileName, "w") as outputFile:
         for row in dbResult:
             writeDataSet(row, outputFile)
-
 
 def writeDataSet(row, outputFile):
     outputFile.write('"' + row[0] + '"')
@@ -88,18 +78,15 @@ def writeDataSet(row, outputFile):
     outputFile.write(str(row[1]))
     outputFile.write("\n")
 
-
 def openDb():
     global dbConnection
     global dbCursor
     dbConnection = sqlite3.connect('temperatur.db')
     dbCursor = dbConnection.cursor()
 
-
 def closeDb():
     global dbConnection
     dbConnection.close()
-
 
 if __name__ == '__main__':
     main()
