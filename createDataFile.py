@@ -83,9 +83,10 @@ def writeDateFile(dateFileName, dbResult):
 
 
 def writeDataSet(row, outputFile):
-    outputFile.write('"' + row[0] + '"')
-    outputFile.write(DELIMITER)
-    outputFile.write(str(row[1]))
+    for column in row:
+        outputFile.write('"' + column + '"')
+        outputFile.write(DELIMITER)
+        outputFile.write(str(column))
     outputFile.write("\n")
 
 
