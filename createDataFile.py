@@ -47,7 +47,8 @@ def generateDataForLast24Hours():
 	writeDateFile("datefileDay.txt", dbResult)
 
 def readAllFromDb():
-	return dbCursor.execute("select t.tempDate,t.temperature from `temperatur` t \
+	return dbCursor.execute("SELECT tempDate, max(temperature), avg(temperature), min(temperature)\
+	FROM `temperatur` GROUP BY date(tempDate) \
 	ORDER BY t.tempDate ASC")
 
 def readMonthDataFromDb():

@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 import datetime
-from time import strftime,localtime,sleep,time,gmtime
+from time import strftime, localtime, sleep, time, gmtime
 import sqlite3
 import os
 import sys
@@ -10,16 +10,16 @@ dbConnection = None
 dbCursor = None
 
 def main():
-	currTemp = fetchTemp()
-	htmlHead = createHead(currTemp)
-	currDate = strftime("%Y-%m-%d %H:%M:%S", localtime())
-	tempPart = createTempDiv(currTemp)
-	htmlTail = createTail()
-	
-	writeHTMLFile(htmlHead, currDate, tempPart, htmlTail)
+    currTemp = fetchTemp()
+    htmlHead = createHead(currTemp)
+    currDate = strftime("%Y-%m-%d %H:%M:%S", localtime())
+    tempPart = createTempDiv(currTemp)
+    htmlTail = createTail()
+
+    writeHTMLFile(htmlHead, currDate, tempPart, htmlTail)
 
 def createHead(currTemp):
-	return """<!DOCTYPE html>
+    return """<!DOCTYPE html>
 <html>
 	<head>
 		<meta charset="utf-8">
@@ -40,51 +40,54 @@ def createHead(currTemp):
 					<div class="panel-heading">
 						<h1 class="date" data-timestamp='""" + str(int(time())) + "'>";
 
+
 def fetchTemp():
-        openDb()
+    openDb()
 
-	tempResult = readLatestTempFromDb()
-	tempString = None
-	for row in tempResult:
-		tempString = "{0:.1f}".format(row[0]) + " &deg;C"
+    tempResult = readLatestTempFromDb()
+    tempString = None
+    for row in tempResult:
+        tempString = "{0:.1f}".format(row[0]) + " &deg;C"
 
-	closeDb()
-	return tempString
+    closeDb()
+    return tempString
+
 
 def createTempDiv(currTemp):
-	return """</h1>
-					</div>
-					<div class="panel-body">
-						<h1 class="temp">Aktuell:
-							<button type="button" class="btn btn-success btn-lg currTemp">
-								<span class="glyphicon glyphicon-signal" aria-hidden="true"></span>""" + currTemp + """
-							</button>
-						</h1>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-6">
-				<div class="panel panel-default system-state">
-					<div class="panel-heading">
-						<h1>Systemstatus</h1>
-					</div>
-					<div class="panel-body">
-						<div class="alert alert-warning" role="alert">
-							<span class="glyphicon glyphicon-warning"></span>&nbsp; System l&auml;uft
-						</div>
-						<div class="alert alert-success hidden" role="alert">
-							<span class="glyphicon glyphicon-ok"></span>&nbsp; System l&auml;uft
-						</div>
-						<div class="alert alert-danger hidden" role="alert">
-							<span class="glyphicon glyphicon-danger"></span>&nbsp; System l&auml;uft nicht synchron.
-						</div>
-					</div>
-				</div>
-			</div>
+    return """</h1>
+        </div>
+        <div class="panel-body">
+            <h1 class="temp">Aktuell:
+                <button type="button" class="btn btn-success btn-lg currTemp">
+                    <span class="glyphicon glyphicon-signal" aria-hidden="true"></span>""" + currTemp + """
+                </button>
+            </h1>
+        </div>
+    </div>
+</div>
+<div class="col-md-6">
+    <div class="panel panel-default system-state">
+        <div class="panel-heading">
+            <h1>Systemstatus</h1>
+        </div>
+        <div class="panel-body">
+            <div class="alert alert-warning" role="alert">
+                <span class="glyphicon glyphicon-warning"></span>&nbsp; System l&auml;uft
+            </div>
+            <div class="alert alert-success hidden" role="alert">
+                <span class="glyphicon glyphicon-ok"></span>&nbsp; System l&auml;uft
+            </div>
+            <div class="alert alert-danger hidden" role="alert">
+                <span class="glyphicon glyphicon-danger"></span>&nbsp; System l&auml;uft nicht synchron.
+            </div>
+        </div>
+    </div>
+</div>
 """
 
+
 def createTail():
-	return """
+    return """
 		<div class="col-md-12">
 			<img src="temperaturDay.png" class="img-responsive" />
 			<img src="temperaturWeek.png" class="img-responsive" /><br />
@@ -100,27 +103,31 @@ def createTail():
 	</body>
 </html>"""
 
+
 def readLatestTempFromDb():
-        return dbCursor.execute("SELECT t.temperature FROM `temperatur` t \
+    return dbCursor.execute("SELECT t.temperature FROM `temperatur` t \
         ORDER BY t.tempDate DESC Limit 1")
 
 
 def openDb():
-        global dbConnection
-        global dbCursor
-        dbConnection= sqlite3.connect('temperatur.db')
-        dbCursor = dbConnection.cursor()
+    global dbConnection
+    global dbCursor
+    dbConnection = sqlite3.connect('temperatur.db')
+    dbCursor = dbConnection.cursor()
+
 
 def closeDb():
-        global dbConnection
-        dbConnection.close()
+    global dbConnection
+    dbConnection.close()
+
 
 def writeHTMLFile(head, currDate, currTemp, tail):
-	with open("target/index.html","w") as outputFile:
-		outputFile.write(head)
-		outputFile.write(currDate)
-		outputFile.write(currTemp)
-		outputFile.write(tail)
+    with open("target/index.html", "w") as outputFile:
+        outputFile.write(head)
+        outputFile.write(currDate)
+        outputFile.write(currTemp)
+        outputFile.write(tail)
+
 
 if __name__ == '__main__':
-	main()
+    main()
