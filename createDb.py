@@ -19,12 +19,12 @@ def main():
     c = conn.cursor()
     print "Create sqlite database" + databaseFilePath
 
-    c.execute("\
+    c.execute("""
 CREATE TABLE `" + databaseTableName + "` (\
 `id`	INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, \
-`" + databaseColumnDate + "`		text, \
-`" + databaseColumnTemperature + "`	real, \
-`" + databaseColumnSensorId + "`	text);")
+`""" + databaseColumnDate + """`		text, \
+`""" + databaseColumnTemperature + """`	real, \
+`""" + databaseColumnSensorId + """`	text);""")
     # conn.commit()
 
     c.execute("CREATE INDEX colDateIdx ON " + databaseTableName + "(" + databaseColumnDate + ")"
