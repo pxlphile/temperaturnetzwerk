@@ -32,7 +32,7 @@ def main():
 
 def generateDataForAll():
     dbResult = readAllFromDb()
-    writeDateFile("datefile.txt", dbResult)
+    writeAllDateFile("datefile.txt", dbResult)
 
 def generateDataForMonth():
     dbResult = readMonthDataFromDb()
@@ -74,10 +74,23 @@ def writeDateFile(dateFileName, dbResult):
 
 def writeDataSet(row, outputFile):
     outputFile.write('"' + row[0] +'"')
-    next(row)
-    for colIdx in range(1,row.rowcount):
-        outputFile.write(DELIMITER)
-        outputFile.write(str(row[colidx]))
+    outputFile.write(DELIMITER)
+    outputFile.write(str(row[1]))
+    outputFile.write("\n")
+
+def writeAllDateFile(dateFileName, dbResult):
+    with open(TARGET_DIR + dateFileName,"w") as outputFile:
+        for row in dbResult:
+            writeAllDataSet(row, outputFile)
+
+def writeDataSet(row, outputFile):
+    outputFile.write('"' + row[0] +'"')
+    outputFile.write(DELIMITER)
+    outputFile.write(str(row[1]))
+    outputFile.write(DELIMITER)
+    outputFile.write(str(row[2]))
+    outputFile.write(DELIMITER)
+    outputFile.write(str(row[3]))
     outputFile.write("\n")
 
 def openDb():
