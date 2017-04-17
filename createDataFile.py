@@ -47,23 +47,23 @@ def generateDataForLast24Hours():
 	writeDateFile("datefileDay.txt", dbResult)
 
 def readAllFromDb():
-	return dbCursor.execute("select t.datum,t.temp from `temperatur` t \
-	ORDER BY t.datum ASC")
+	return dbCursor.execute("select t.tempDate,t.temperaturefrom `temperatur` t \
+	ORDER BY t.tempDate ASC")
 
 def readMonthDataFromDb():
-	return dbCursor.execute("SELECT t.datum,t.temp FROM `temperatur` t \
-	where t.datum >= date('now', '-1 months') \
-	ORDER BY t.datum ASC")
+	return dbCursor.execute("SELECT t.tempDate,t.temperatureFROM `temperatur` t \
+	where t.tempDate >= date('now', '-1 months') \
+	ORDER BY t.tempDate ASC")
 
 def readWeekDataFromDb():
-	return dbCursor.execute("SELECT t.datum,t.temp FROM `temperatur` t \
-	where t.datum >= date('now', '-7 days') \
-	ORDER BY t.datum ASC")
+	return dbCursor.execute("SELECT t.tempDate,t.temperatureFROM `temperatur` t \
+	where t.tempDate >= date('now', '-7 days') \
+	ORDER BY t.tempDate ASC")
 
 def readLast24HoursDataFromDb():
-	return dbCursor.execute("SELECT t.datum,t.temp FROM `temperatur` t \
-	where t.datum >= date('now', '-1 days') \
-	ORDER BY t.datum ASC")
+	return dbCursor.execute("SELECT t.tempDate,t.temperatureFROM `temperatur` t \
+	where t.tempDate >= date('now', '-1 days') \
+	ORDER BY t.tempDate ASC")
 
 
 def writeDateFile(dateFileName, dbResult):
