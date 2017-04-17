@@ -53,8 +53,8 @@ def generateDataForLast24Hours():
 
 
 def readAllFromDb():
-    return dbCursor.execute("SELECT tempDate, max(temperature), avg(temperature), min(temperature) \
-    FROM `temperatur` GROUP BY date(tempDate) \
+    return dbCursor.execute("SELECT t.tempDate, max(t.temperature), avg(t.temperature), min(t.temperature) \
+    FROM `temperatur` t GROUP BY date(tempDate) \
     ORDER BY t.tempDate ASC")
 
 
