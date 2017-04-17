@@ -27,10 +27,10 @@ CREATE TABLE `" + databaseTableName + "` (\
 `""" + databaseColumnSensorId + """`	text);""")
     conn.commit()
 
-    c.execute("""CREATE INDEX colDateIdx ON """ + databaseTableName + """(""" + databaseColumnDate + """)"""
+    c.execute("""CREATE INDEX colDateIdx ON """ + databaseTableName + """(""" + databaseColumnDate + """)""")
     conn.commit()
 
-    c.execute("""CREATE INDEX sensorIdx ON """ + databaseTableName + """(""" + databaseColumnSensorId + """)"""
+    c.execute("""CREATE INDEX sensorIdx ON """ + databaseTableName + """(""" + databaseColumnSensorId + """)""")
     conn.commit()
 
     conn.close()
