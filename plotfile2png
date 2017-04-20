@@ -7,7 +7,7 @@ set ylabel "Temperatur in °C"
 set xdata time
 set timefmt "%Y-%m-%d %H:%M:%S"
 #set xrange['"2016-06-09 11:00:00"':'"2017-06-09 14:10:00"']
-set format x "%m-%Y"
+set format x "%d.%m.%y"
 set yrange[*:*]
 set autoscale x
 set datafile separator ';'
